@@ -679,6 +679,46 @@ textarea {
     color: var(--color-danger);
 }
 
+.github-credit {
+    text-align: center;
+    margin-top: var(--spacing-lg);
+    padding-top: var(--spacing-md);
+    border-top: 1px solid rgba(44, 83, 100, 0.15);
+}
+
+.github-link {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    color: var(--color-text-secondary);
+    text-decoration: none;
+    font-size: 0.9rem;
+    padding: var(--spacing-xs) var(--spacing-md);
+    border-radius: var(--radius);
+    transition: all 0.3s ease;
+}
+
+.github-link:hover {
+    color: var(--color-text);
+    background: rgba(44, 83, 100, 0.1);
+    transform: translateY(-2px);
+}
+
+.github-icon {
+    width: 20px;
+    height: 20px;
+    transition: transform 0.3s ease;
+}
+
+.github-link:hover .github-icon {
+    transform: scale(1.1);
+}
+
+.github-text {
+    font-weight: 500;
+}
+
+@media (max-width: 600px) {
 @media (max-width: 600px) {
     .timer-section {
         padding: var(--spacing-lg) var(--spacing-md);
