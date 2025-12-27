@@ -5,16 +5,22 @@
 }
 
 :root {
-    --color-bg: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    --color-bg: linear-gradient(135deg, #2c5364 0%, #203a43 50%, #0f2027 100%);
     --color-surface: #ffffff;
     --color-text: #2c3e50;
     --color-text-secondary: #7f8c8d;
+    --color-text-light: rgba(255, 255, 255, 0.9);
+    --color-text-lighter: rgba(255, 255, 255, 0.7);
     --color-primary: #667eea;
     --color-primary-light: #8b9cf5;
     --color-success: #10b981;
     --color-success-light: #34d399;
     --color-danger: #ef4444;
     --color-border: #e5e7eb;
+    --color-white: #ffffff;
+    --color-milestone-white: #f0f0f0;
+    --color-milestone-silver: #c0c0c0;
+    --color-milestone-gold: #ffd700;
     --spacing-xs: 0.5rem;
     --spacing-sm: 1rem;
     --spacing-md: 1.5rem;
@@ -239,89 +245,149 @@ h3 {
 }
 
 .timer-section {
-    text-align: center;
-    margin: var(--spacing-xl) 0;
+    background: linear-gradient(135deg, #2c5364 0%, #203a43 100%);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-xl) var(--spacing-lg);
+    margin: var(--spacing-lg) 0;
+    color: var(--color-white);
+    box-shadow: var(--shadow-lg);
 }
 
 .achievement-message {
+    text-align: center;
     margin-bottom: var(--spacing-lg);
 }
 
 .congrats-text {
-    font-size: 1.15rem;
-    color: var(--color-text-secondary);
+    font-size: 1rem;
+    color: var(--color-text-lighter);
     margin-bottom: var(--spacing-xs);
 }
 
 .habit-free {
-    font-size: 1.5rem;
-    font-weight: 600;
-    background: linear-gradient(135deg, #10b981 0%, #34d399 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--color-white);
 }
 
 .timer-display {
-    display: flex;
-    justify-content: center;
-    gap: var(--spacing-md);
-    flex-wrap: wrap;
     margin: var(--spacing-xl) 0;
+}
+
+.progress-bar-container {
+    background: rgba(255, 255, 255, 0.15);
+    height: 12px;
+    border-radius: 50px;
+    overflow: hidden;
+    margin-bottom: var(--spacing-md);
+    position: relative;
+}
+
+.progress-bar {
+    height: 100%;
+    background: linear-gradient(90deg, #34d399 0%, #10b981 100%);
+    border-radius: 50px;
+    transition: width 1s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.progress-bar::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
+.time-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--spacing-sm);
+    margin-bottom: var(--spacing-lg);
 }
 
 .time-unit {
     display: flex;
     flex-direction: column;
     align-items: center;
-    min-width: 80px;
-    background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+    background: rgba(255, 255, 255, 0.1);
     padding: var(--spacing-md);
     border-radius: var(--radius);
-    box-shadow: var(--shadow);
-    transition: transform 0.3s;
-}
-
-.time-unit:hover {
-    transform: scale(1.05);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .time-value {
-    font-size: 2.75rem;
+    font-size: 2rem;
     font-weight: 800;
-    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    color: var(--color-white);
     line-height: 1;
 }
 
 .time-label {
-    font-size: 0.85rem;
-    color: var(--color-text-secondary);
+    font-size: 0.75rem;
+    color: var(--color-text-lighter);
     margin-top: var(--spacing-xs);
     font-weight: 500;
     text-transform: uppercase;
-    letter-spacing: 0.5px;
+    letter-spacing: 1px;
 }
 
-.motivation-badge {
+.milestone-section {
+    text-align: center;
+}
+
+.milestone-badge {
     display: inline-flex;
+    flex-direction: column;
     align-items: center;
-    gap: var(--spacing-xs);
-    background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
-    padding: var(--spacing-sm) var(--spacing-md);
-    border-radius: 50px;
-    margin-top: var(--spacing-md);
+    gap: var(--spacing-sm);
+    padding: var(--spacing-md);
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: var(--radius);
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255, 255, 255, 0.2);
 }
 
-.badge-icon {
-    font-size: 1.25rem;
+.milestone-icon {
+    width: 80px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: #2c3e50;
+    position: relative;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
 }
 
-.badge-text {
+.milestone-icon.white {
+    background: linear-gradient(135deg, #ffffff 0%, #f0f0f0 100%);
+}
+
+.milestone-icon.silver {
+    background: linear-gradient(135deg, #e8e8e8 0%, #c0c0c0 100%);
+}
+
+.milestone-icon.gold {
+    background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
+}
+
+.milestone-text {
+    font-size: 0.9rem;
+    color: var(--color-text-lighter);
     font-weight: 500;
-    color: #92400e;
 }
 
 .relapse-btn {
@@ -620,18 +686,33 @@ textarea {
     color: var(--color-danger);
 }
 
+@media (max-width: 600px) {
+    .timer-section {
+        padding: var(--spacing-lg) var(--spacing-md);
+    }
+
+    .time-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .time-value {
+        font-size: 1.75rem;
+    }
+
+    .milestone-icon {
+        width: 70px;
+        height: 70px;
+        font-size: 2rem;
+    }
+}
+
 @media (max-width: 480px) {
     h1 {
         font-size: 1.85rem;
     }
 
-    .time-value {
-        font-size: 2.25rem;
-    }
-
-    .time-unit {
-        min-width: 70px;
-        padding: var(--spacing-sm);
+    .habit-free {
+        font-size: 1.4rem;
     }
 
     .relapse-btn {
