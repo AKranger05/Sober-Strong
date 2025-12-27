@@ -1,1 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sober & Strong</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        
+        <!-- Habit Selection View -->
+        <div id="habitSelection" class="view">
+            <h1>Sober & Strong</h1>
+            <p class="subtitle">Choose the habit you're overcoming</p>
+            <div class="habit-grid">
+                <button class="habit-card" data-habit="Smoking">Smoking</button>
+                <button class="habit-card" data-habit="Alcohol">Alcohol</button>
+                <button class="habit-card" data-habit="Porn">Porn</button>
+                <button class="habit-card" data-habit="Social Media">Social Media</button>
+                <button class="habit-card" data-habit="Junk Food">Junk Food</button>
+                <button class="habit-card custom" id="customHabitBtn">+ Custom</button>
+            </div>
+        </div>
 
+        <!-- Custom Habit Input -->
+        <div id="customHabitInput" class="view hidden">
+            <h2>Add Custom Habit</h2>
+            <input type="text" id="customHabitName" placeholder="Enter habit name" maxlength="30">
+            <div class="button-group">
+                <button id="saveCustomHabit" class="primary-btn">Save</button>
+                <button id="cancelCustomHabit" class="secondary-btn">Cancel</button>
+            </div>
+        </div>
+
+        <!-- Timer View -->
+        <div id="timerView" class="view hidden">
+            <div class="header">
+                <h2 id="currentHabit"></h2>
+                <button id="menuBtn" class="icon-btn" aria-label="Menu">⋮</button>
+            </div>
+
+            <div class="timer-section">
+                <p class="timer-label">Time since last relapse</p>
+                <div class="timer-display">
+                    <div class="time-unit">
+                        <span class="time-value" id="days">0</span>
+                        <span class="time-label">days</span>
+                    </div>
+                    <div class="time-unit">
+                        <span class="time-value" id="hours">0</span>
+                        <span class="time-label">hours</span>
+                    </div>
+                    <div class="time-unit">
+                        <span class="time-value" id="minutes">0</span>
+                        <span class="time-label">minutes</span>
+                    </div>
+                    <div class="time-unit">
+                        <span class="time-value" id="seconds">0</span>
+                        <span class="time-label">seconds</span>
+                    </div>
+                </div>
+            </div>
+
+            <button id="relapseBtn" class="relapse-btn" aria-label="Log relapse">↻</button>
+
+            <div class="action-links">
+                <button id="viewHistoryBtn" class="text-btn">View History</button>
+            </div>
+        </div>
+
+        <!-- Relapse Log View -->
+        <div id="relapseLog" class="view hidden">
+            <div class="header">
+                <button id="backFromRelapse" class="icon-btn" aria-label="Back">←</button>
+                <h2>Log Relapse</h2>
+            </div>
+
+            <div class="log-form">
+                <div class="log-info">
+                    <p id="relapseDateTime"></p>
+                </div>
+                <label for="reflectionText">What happened?</label>
+                <textarea id="reflectionText" rows="6" placeholder="What led to this relapse? How did you feel? What triggered it?"></textarea>
+                <button id="submitRelapse" class="primary-btn">Submit</button>
+            </div>
+        </div>
+
+        <!-- History View -->
+        <div id="historyView" class="view hidden">
+            <div class="header">
+                <button id="backFromHistory" class="icon-btn" aria-label="Back">←</button>
+                <h2>Relapse History</h2>
+            </div>
+
+            <div id="historyList" class="history-list"></div>
+            <p id="emptyHistory" class="empty-message hidden">No relapses recorded yet. Keep going strong!</p>
+        </div>
+
+        <!-- Menu Modal -->
+        <div id="menuModal" class="modal hidden">
+            <div class="modal-content">
+                <button id="changeHabitBtn" class="menu-item">Change Habit</button>
+                <button id="resetDataBtn" class="menu-item danger">Reset All Data</button>
+                <button id="closeMenuBtn" class="menu-item">Cancel</button>
+            </div>
+        </div>
+
+        <!-- Confirmation Modal -->
+        <div id="confirmModal" class="modal hidden">
+            <div class="modal-content confirm">
+                <h3>Confirm Reset</h3>
+                <p>This will delete all your data including habit, timer, and history. This cannot be undone.</p>
+                <div class="button-group">
+                    <button id="confirmResetBtn" class="danger-btn">Reset Everything</button>
+                    <button id="cancelResetBtn" class="secondary-btn">Cancel</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="script.js"></script>
+</body>
+  </html>
