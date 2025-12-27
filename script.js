@@ -1,5 +1,5 @@
 const App = {
-    currentView: 'habitSelection',
+    currentView: 'nameInput',
     timerInterval: null,
     startTime: null,
 
@@ -14,27 +14,35 @@ const App = {
             const data = localStorage.getItem('soberStrongData');
             if (data) {
                 const parsed = JSON.parse(data);
+                this.userName = parsed.userName || null;
                 this.habit = parsed.habit || null;
                 this.startTime = parsed.startTime || null;
                 this.relapses = parsed.relapses || [];
             } else {
+                this.userName = null;
                 this.habit = null;
                 this.startTime = null;
                 this.relapses = [];
             }
         } catch (e) {
+            this.userName = null;
             this.habit = null;
             this.startTime = null;
             this.relapses = [];
         }
 
-        if (this.habit && this.startTime) {
+        if (this.userName && this.habit && this.startTime) {
             this.currentView = 'timerView';
+        } else if (this.userName && !this.habit) {
+            this.currentView = 'habitSelection';
+        } else {
+            this.currentView = 'nameInput';
         }
     },
 
     saveData() {
         const data = {
+            userName: this.userName,
             habit: this.habit,
             startTime: this.startTime,
             relapses: this.relapses
@@ -43,6 +51,22 @@ const App = {
     },
 
     bindEvents() {
+        document.getElementById('saveUserName').addEventListener('click', () => {
+            const name = document.getElementById('userName').value.trim();
+            if (name) {
+                this.userName = name;
+                this.currentView = 'habitSelection';
+                this.saveData();
+                this.showView();
+            }
+        });
+
+        document.getElementById('userName').addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                document.getElementById('saveUserName').click();
+            }
+        });
+
         document.querySelectorAll('.habit-card:not(.custom)').forEach(card => {
             card.addEventListener('click', () => this.selectHabit(card.dataset.habit));
         });
@@ -139,14 +163,21 @@ const App = {
     showView() {
         document.querySelectorAll('.view').forEach(view => view.classList.add('hidden'));
 
-        if (this.currentView === 'habitSelection') {
+        if (this.currentView === 'nameInput') {
+            document.getElementById('nameInput').classList.remove('hidden');
+            document.getElementById('userName').focus();
+        } else if (this.currentView === 'habitSelection') {
             document.getElementById('habitSelection').classList.remove('hidden');
+            document.getElementById('greetingName').textContent = this.userName;
         } else if (this.currentView === 'customHabitInput') {
             document.getElementById('customHabitInput').classList.remove('hidden');
             document.getElementById('customHabitName').focus();
         } else if (this.currentView === 'timerView') {
             document.getElementById('timerView').classList.remove('hidden');
+            document.getElementById('headerName').textContent = this.userName;
+            document.getElementById('timerUserName').textContent = this.userName;
             document.getElementById('currentHabit').textContent = this.habit;
+            this.updateMotivation();
             this.startTimer();
         } else if (this.currentView === 'relapseLog') {
             document.getElementById('relapseLog').classList.remove('hidden');
@@ -154,6 +185,21 @@ const App = {
             document.getElementById('historyView').classList.remove('hidden');
             this.renderHistory();
         }
+    },
+
+    updateMotivation() {
+        const motivations = [
+            "Keep going strong!",
+            "You're doing amazing!",
+            "Every second counts!",
+            "Stay focused!",
+            "You've got this!",
+            "One day at a time!",
+            "Proud of you!",
+            "Never give up!"
+        ];
+        const random = motivations[Math.floor(Math.random() * motivations.length)];
+        document.getElementById('motivationText').textContent = random;
     },
 
     startTimer() {
@@ -248,8 +294,8 @@ const App = {
 
             item.innerHTML = `
                 <div class="history-header">
-                    <span>${dateStr}</span>
-                    <span>${timeStr}</span>
+                    <span>📅 ${dateStr}</span>
+                    <span>🕐 ${timeStr}</span>
                 </div>
                 <div class="history-reflection">${this.escapeHtml(relapse.reflection) || '<em>No reflection added</em>'}</div>
             `;
@@ -265,13 +311,14 @@ const App = {
     },
 
     resetAllData() {
+        this.userName = null;
         this.habit = null;
         this.startTime = null;
         this.relapses = [];
         this.stopTimer();
         localStorage.removeItem('soberStrongData');
         document.getElementById('confirmModal').classList.add('hidden');
-        this.currentView = 'habitSelection';
+        this.currentView = 'nameInput';
         this.showView();
     }
 };
