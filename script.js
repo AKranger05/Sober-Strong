@@ -222,35 +222,10 @@ const App = {
         const hoursProgress = (displayHours / 24) * 100;
         const daysProgress = Math.min((days / 30) * 100, 100);
 
-        document.querySelector('.seconds-bar').style.setProperty('--width', `${secondsProgress}%`);
-        document.querySelector('.minutes-bar').style.setProperty('--width', `${minutesProgress}%`);
-        document.querySelector('.hours-bar').style.setProperty('--width', `${hoursProgress}%`);
-        document.querySelector('.days-bar').style.setProperty('--width', `${daysProgress}%`);
-
-        const secondsBar = document.querySelector('.seconds-bar::before');
-        if (secondsBar) {
-            document.querySelector('.seconds-bar').style.setProperty('--seconds-width', `${secondsProgress}%`);
-        }
-
-        document.documentElement.style.setProperty('--seconds-progress', `${secondsProgress}%`);
-        document.documentElement.style.setProperty('--minutes-progress', `${minutesProgress}%`);
-        document.documentElement.style.setProperty('--hours-progress', `${hoursProgress}%`);
-        document.documentElement.style.setProperty('--days-progress', `${daysProgress}%`);
-
-        const style = document.createElement('style');
-        style.textContent = `
-            .seconds-bar::before { width: ${secondsProgress}% !important; }
-            .minutes-bar::before { width: ${minutesProgress}% !important; }
-            .hours-bar::before { width: ${hoursProgress}% !important; }
-            .days-bar::before { width: ${daysProgress}% !important; }
-        `;
-        
-        const existingStyle = document.getElementById('dynamic-bar-styles');
-        if (existingStyle) {
-            existingStyle.remove();
-        }
-        style.id = 'dynamic-bar-styles';
-        document.head.appendChild(style);
+        document.querySelector('.seconds-bar').style.setProperty('--progress', `${secondsProgress}%`);
+        document.querySelector('.minutes-bar').style.setProperty('--progress', `${minutesProgress}%`);
+        document.querySelector('.hours-bar').style.setProperty('--progress', `${hoursProgress}%`);
+        document.querySelector('.days-bar').style.setProperty('--progress', `${daysProgress}%`);
 
         const milestoneIcon = document.getElementById('milestoneIcon');
         const milestoneText = document.getElementById('milestoneText');
