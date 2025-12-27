@@ -72,6 +72,21 @@ body {
     display: none;
 }
 
+.app-title {
+    text-align: center;
+    margin-bottom: var(--spacing-md);
+}
+
+.main-title {
+    font-size: 2rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 0;
+}
+
 .welcome-header {
     text-align: center;
     margin-bottom: var(--spacing-xl);
@@ -242,12 +257,11 @@ h3 {
 }
 
 .timer-section {
-    background: linear-gradient(135deg, #2c5364 0%, #203a43 100%);
+    background: transparent;
     border-radius: var(--radius-lg);
     padding: var(--spacing-xl) var(--spacing-lg);
     margin: var(--spacing-lg) 0;
-    color: var(--color-white);
-    box-shadow: var(--shadow-lg);
+    color: var(--color-text);
 }
 
 .achievement-message {
@@ -257,14 +271,14 @@ h3 {
 
 .congrats-text {
     font-size: 1rem;
-    color: var(--color-text-lighter);
+    color: var(--color-text-secondary);
     margin-bottom: var(--spacing-xs);
 }
 
 .habit-free {
     font-size: 1.75rem;
     font-weight: 700;
-    color: var(--color-white);
+    color: var(--color-text);
 }
 
 .timer-display {
@@ -283,7 +297,8 @@ h3 {
     position: relative;
     overflow: hidden;
     min-height: 60px;
-    background: rgba(255, 255, 255, 0.08);
+    background: rgba(44, 83, 100, 0.08);
+    box-shadow: var(--shadow);
 }
 
 .time-bar::before {
@@ -317,7 +332,7 @@ h3 {
 .time-value {
     font-size: 2rem;
     font-weight: 800;
-    color: var(--color-white);
+    color: var(--color-text);
     line-height: 1;
     min-width: 60px;
     position: relative;
@@ -326,7 +341,7 @@ h3 {
 
 .time-label {
     font-size: 0.9rem;
-    color: var(--color-text-lighter);
+    color: var(--color-text-secondary);
     font-weight: 500;
     position: relative;
     z-index: 1;
@@ -344,10 +359,10 @@ h3 {
     align-items: center;
     gap: var(--spacing-sm);
     padding: var(--spacing-md);
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(44, 83, 100, 0.08);
     border-radius: var(--radius);
     backdrop-filter: blur(10px);
-    border: 2px solid rgba(255, 255, 255, 0.2);
+    border: 2px solid rgba(44, 83, 100, 0.15);
 }
 
 .milestone-icon {
@@ -361,7 +376,7 @@ h3 {
     font-weight: 800;
     color: #2c3e50;
     position: relative;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
     transition: all 0.3s ease;
 }
 
@@ -379,7 +394,7 @@ h3 {
 
 .milestone-text {
     font-size: 0.9rem;
-    color: var(--color-text-lighter);
+    color: var(--color-text-secondary);
     font-weight: 500;
 }
 
@@ -719,7 +734,6 @@ textarea {
 }
 
 @media (max-width: 600px) {
-@media (max-width: 600px) {
     .timer-section {
         padding: var(--spacing-lg) var(--spacing-md);
     }
@@ -743,6 +757,10 @@ textarea {
         height: 70px;
         font-size: 2rem;
     }
+
+    .main-title {
+        font-size: 1.65rem;
+    }
 }
 
 @media (max-width: 480px) {
@@ -763,4 +781,8 @@ textarea {
     .habit-grid {
         grid-template-columns: repeat(2, 1fr);
     }
-}
+
+    .main-title {
+        font-size: 1.5rem;
+    }
+                     }
