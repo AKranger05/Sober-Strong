@@ -9,17 +9,51 @@
 <body>
     <div class="app-container">
         
+        <!-- Name Input View -->
+        <div id="nameInput" class="view">
+            <div class="welcome-header">
+                <div class="logo">💪</div>
+                <h1>Sober & Strong</h1>
+                <p class="subtitle">Your journey to a better you starts here</p>
+            </div>
+            <div class="name-form">
+                <label for="userName">What's your name?</label>
+                <input type="text" id="userName" placeholder="Enter your name" maxlength="20">
+                <button id="saveUserName" class="primary-btn">Continue</button>
+            </div>
+        </div>
+
         <!-- Habit Selection View -->
-        <div id="habitSelection" class="view">
-            <h1>Sober & Strong</h1>
-            <p class="subtitle">Choose the habit you're overcoming</p>
+        <div id="habitSelection" class="view hidden">
+            <div class="welcome-back">
+                <h1>Hello, <span id="greetingName"></span>! 👋</h1>
+                <p class="subtitle">Choose the habit you're overcoming</p>
+            </div>
             <div class="habit-grid">
-                <button class="habit-card" data-habit="Smoking">Smoking</button>
-                <button class="habit-card" data-habit="Alcohol">Alcohol</button>
-                <button class="habit-card" data-habit="Porn">Porn</button>
-                <button class="habit-card" data-habit="Social Media">Social Media</button>
-                <button class="habit-card" data-habit="Junk Food">Junk Food</button>
-                <button class="habit-card custom" id="customHabitBtn">+ Custom</button>
+                <button class="habit-card" data-habit="Smoking">
+                    <span class="habit-icon">🚭</span>
+                    <span class="habit-name">Smoking</span>
+                </button>
+                <button class="habit-card" data-habit="Alcohol">
+                    <span class="habit-icon">🍺</span>
+                    <span class="habit-name">Alcohol</span>
+                </button>
+                <button class="habit-card" data-habit="Porn">
+                    <span class="habit-icon">🔞</span>
+                    <span class="habit-name">Porn</span>
+                </button>
+                <button class="habit-card" data-habit="Social Media">
+                    <span class="habit-icon">📱</span>
+                    <span class="habit-name">Social Media</span>
+                </button>
+                <button class="habit-card" data-habit="Junk Food">
+                    <span class="habit-icon">🍔</span>
+                    <span class="habit-name">Junk Food</span>
+                </button>
+                <button class="habit-card custom" id="customHabitBtn">
+                    <span class="habit-icon">+</span>
+                    <span class="habit-name">Custom</span>
+                </button>
             </div>
         </div>
 
@@ -36,12 +70,18 @@
         <!-- Timer View -->
         <div id="timerView" class="view hidden">
             <div class="header">
-                <h2 id="currentHabit"></h2>
+                <div class="user-badge">
+                    <span class="user-avatar">👤</span>
+                    <span id="headerName" class="user-name"></span>
+                </div>
                 <button id="menuBtn" class="icon-btn" aria-label="Menu">⋮</button>
             </div>
 
             <div class="timer-section">
-                <p class="timer-label">Time since last relapse</p>
+                <div class="achievement-message">
+                    <p class="congrats-text"><span id="timerUserName"></span>, you've been</p>
+                    <p class="habit-free"><span id="currentHabit"></span>-free for</p>
+                </div>
                 <div class="timer-display">
                     <div class="time-unit">
                         <span class="time-value" id="days">0</span>
@@ -60,12 +100,16 @@
                         <span class="time-label">seconds</span>
                     </div>
                 </div>
+                <div class="motivation-badge">
+                    <span class="badge-icon">✨</span>
+                    <span class="badge-text" id="motivationText">Keep going strong!</span>
+                </div>
             </div>
 
             <button id="relapseBtn" class="relapse-btn" aria-label="Log relapse">↻</button>
 
             <div class="action-links">
-                <button id="viewHistoryBtn" class="text-btn">View History</button>
+                <button id="viewHistoryBtn" class="text-btn">📊 View History</button>
             </div>
         </div>
 
@@ -94,14 +138,14 @@
             </div>
 
             <div id="historyList" class="history-list"></div>
-            <p id="emptyHistory" class="empty-message hidden">No relapses recorded yet. Keep going strong!</p>
+            <p id="emptyHistory" class="empty-message hidden">No relapses recorded yet. Keep going strong! 💪</p>
         </div>
 
         <!-- Menu Modal -->
         <div id="menuModal" class="modal hidden">
             <div class="modal-content">
-                <button id="changeHabitBtn" class="menu-item">Change Habit</button>
-                <button id="resetDataBtn" class="menu-item danger">Reset All Data</button>
+                <button id="changeHabitBtn" class="menu-item">🔄 Change Habit</button>
+                <button id="resetDataBtn" class="menu-item danger">🗑️ Reset All Data</button>
                 <button id="closeMenuBtn" class="menu-item">Cancel</button>
             </div>
         </div>
@@ -110,8 +154,19 @@
         <div id="confirmModal" class="modal hidden">
             <div class="modal-content confirm">
                 <h3>Confirm Reset</h3>
-                <p>This will delete all your data including habit, timer, and history. This cannot be undone.</p>
+                <p>This will delete all your data including name, habit, timer, and history. This cannot be undone.</p>
                 <div class="button-group">
+                    <button id="confirmResetBtn" class="danger-btn">Reset Everything</button>
+                    <button id="cancelResetBtn" class="secondary-btn">Cancel</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>                <div class="button-group">
                     <button id="confirmResetBtn" class="danger-btn">Reset Everything</button>
                     <button id="cancelResetBtn" class="secondary-btn">Cancel</button>
                 </div>
