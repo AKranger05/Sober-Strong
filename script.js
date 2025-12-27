@@ -177,7 +177,6 @@ const App = {
             document.getElementById('headerName').textContent = this.userName;
             document.getElementById('timerUserName').textContent = this.userName;
             document.getElementById('currentHabit').textContent = this.habit;
-            this.updateMotivation();
             this.startTimer();
         } else if (this.currentView === 'relapseLog') {
             document.getElementById('relapseLog').classList.remove('hidden');
@@ -185,21 +184,6 @@ const App = {
             document.getElementById('historyView').classList.remove('hidden');
             this.renderHistory();
         }
-    },
-
-    updateMotivation() {
-        const motivations = [
-            "Keep going strong!",
-            "You're doing amazing!",
-            "Every second counts!",
-            "Stay focused!",
-            "You've got this!",
-            "One day at a time!",
-            "Proud of you!",
-            "Never give up!"
-        ];
-        const random = motivations[Math.floor(Math.random() * motivations.length)];
-        document.getElementById('motivationText').textContent = random;
     },
 
     startTimer() {
@@ -224,10 +208,68 @@ const App = {
         const hours = Math.floor(minutes / 60);
         const days = Math.floor(hours / 24);
 
+        const displaySeconds = seconds % 60;
+        const displayMinutes = minutes % 60;
+        const displayHours = hours % 24;
+
         document.getElementById('days').textContent = days;
-        document.getElementById('hours').textContent = hours % 24;
-        document.getElementById('minutes').textContent = minutes % 60;
-        document.getElementById('seconds').textContent = seconds % 60;
+        document.getElementById('hours').textContent = displayHours;
+        document.getElementById('minutes').textContent = displayMinutes;
+        document.getElementById('seconds').textContent = displaySeconds;
+
+        const secondsProgress = (displaySeconds / 60) * 100;
+        const minutesProgress = (displayMinutes / 60) * 100;
+        const hoursProgress = (displayHours / 24) * 100;
+        const daysProgress = Math.min((days / 30) * 100, 100);
+
+        document.querySelector('.seconds-bar').style.setProperty('--width', `${secondsProgress}%`);
+        document.querySelector('.minutes-bar').style.setProperty('--width', `${minutesProgress}%`);
+        document.querySelector('.hours-bar').style.setProperty('--width', `${hoursProgress}%`);
+        document.querySelector('.days-bar').style.setProperty('--width', `${daysProgress}%`);
+
+        const secondsBar = document.querySelector('.seconds-bar::before');
+        if (secondsBar) {
+            document.querySelector('.seconds-bar').style.setProperty('--seconds-width', `${secondsProgress}%`);
+        }
+
+        document.documentElement.style.setProperty('--seconds-progress', `${secondsProgress}%`);
+        document.documentElement.style.setProperty('--minutes-progress', `${minutesProgress}%`);
+        document.documentElement.style.setProperty('--hours-progress', `${hoursProgress}%`);
+        document.documentElement.style.setProperty('--days-progress', `${daysProgress}%`);
+
+        const style = document.createElement('style');
+        style.textContent = `
+            .seconds-bar::before { width: ${secondsProgress}% !important; }
+            .minutes-bar::before { width: ${minutesProgress}% !important; }
+            .hours-bar::before { width: ${hoursProgress}% !important; }
+            .days-bar::before { width: ${daysProgress}% !important; }
+        `;
+        
+        const existingStyle = document.getElementById('dynamic-bar-styles');
+        if (existingStyle) {
+            existingStyle.remove();
+        }
+        style.id = 'dynamic-bar-styles';
+        document.head.appendChild(style);
+
+        const milestoneIcon = document.getElementById('milestoneIcon');
+        const milestoneText = document.getElementById('milestoneText');
+
+        milestoneIcon.classList.remove('white', 'silver', 'gold');
+
+        if (days >= 30) {
+            milestoneIcon.classList.add('gold');
+            milestoneIcon.textContent = days;
+            milestoneText.textContent = 'Gold - 30+ Days!';
+        } else if (days >= 7) {
+            milestoneIcon.classList.add('silver');
+            milestoneIcon.textContent = days;
+            milestoneText.textContent = 'Silver - 7+ Days!';
+        } else {
+            milestoneIcon.classList.add('white');
+            milestoneIcon.textContent = days;
+            milestoneText.textContent = 'Daily Progress';
+        }
     },
 
     openRelapseLog() {
