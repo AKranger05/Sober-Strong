@@ -6,7 +6,7 @@
 
 :root {
     --color-bg: linear-gradient(135deg, #2c5364 0%, #203a43 50%, #0f2027 100%);
-    --color-surface: #ffffff;
+    --color-surface: #f8fafb;
     --color-text: #2c3e50;
     --color-text-secondary: #7f8c8d;
     --color-text-light: rgba(255, 255, 255, 0.9);
@@ -16,7 +16,7 @@
     --color-success: #10b981;
     --color-success-light: #34d399;
     --color-danger: #ef4444;
-    --color-border: #e5e7eb;
+    --color-border: #d1e3e8;
     --color-white: #ffffff;
     --spacing-xs: 0.5rem;
     --spacing-sm: 1rem;
@@ -45,7 +45,7 @@ body {
 .app-container {
     width: 100%;
     max-width: 650px;
-    background: var(--color-surface);
+    background: linear-gradient(135deg, #e8f4f8 0%, #d4e9f0 100%);
     border-radius: var(--radius-lg);
     box-shadow: var(--shadow-xl);
     overflow: hidden;
@@ -133,7 +133,7 @@ h3 {
 }
 
 .habit-card {
-    background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+    background: linear-gradient(135deg, #ffffff 0%, #f0f8fb 100%);
     border: 2px solid var(--color-border);
     border-radius: var(--radius);
     padding: var(--spacing-lg);
@@ -186,7 +186,7 @@ h3 {
 
 .habit-card.custom {
     border-style: dashed;
-    background: linear-gradient(135deg, #fafafa 0%, #f0f0f0 100%);
+    background: linear-gradient(135deg, #f0f8fb 0%, #e0f0f5 100%);
 }
 
 .habit-card.custom .habit-icon {
@@ -237,7 +237,7 @@ h3 {
 }
 
 .icon-btn:hover {
-    background: var(--color-border);
+    background: rgba(44, 83, 100, 0.1);
     transform: scale(1.1);
 }
 
@@ -366,7 +366,7 @@ h3 {
 }
 
 .milestone-icon.white {
-    background: linear-gradient(135deg, #ffffff 0%, #f0f0f0 100%);
+    background: linear-gradient(135deg, #e8f4f8 0%, #d4e9f0 100%);
 }
 
 .milestone-icon.silver {
@@ -456,14 +456,14 @@ h3 {
 }
 
 .log-info {
-    background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+    background: linear-gradient(135deg, #d4e9f0 0%, #c0dfe8 100%);
     padding: var(--spacing-md);
     border-radius: var(--radius);
     margin-bottom: var(--spacing-lg);
     text-align: center;
     color: var(--color-text);
     font-weight: 500;
-    border: 1px solid #bfdbfe;
+    border: 1px solid #a8cfd9;
 }
 
 label {
@@ -483,14 +483,14 @@ textarea {
     font-size: 1rem;
     margin-bottom: var(--spacing-md);
     transition: all 0.3s;
-    background: #fafafa;
+    background: rgba(255, 255, 255, 0.7);
 }
 
 input[type="text"]:focus,
 textarea:focus {
     outline: none;
     border-color: var(--color-primary);
-    background: white;
+    background: rgba(255, 255, 255, 0.95);
     box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
 }
 
@@ -545,12 +545,12 @@ textarea {
 }
 
 .secondary-btn {
-    background: var(--color-border);
+    background: rgba(44, 83, 100, 0.15);
     color: var(--color-text);
 }
 
 .secondary-btn:hover {
-    background: #d1d5db;
+    background: rgba(44, 83, 100, 0.25);
 }
 
 .danger-btn {
@@ -580,7 +580,7 @@ textarea {
 }
 
 .history-item {
-    background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+    background: linear-gradient(135deg, #ffffff 0%, #f0f8fb 100%);
     border: 1px solid var(--color-border);
     border-radius: var(--radius);
     padding: var(--spacing-md);
@@ -643,7 +643,7 @@ textarea {
 }
 
 .modal-content {
-    background: var(--color-surface);
+    background: linear-gradient(135deg, #e8f4f8 0%, #d4e9f0 100%);
     border-radius: var(--radius-lg);
     padding: var(--spacing-sm);
     max-width: 400px;
@@ -671,7 +671,7 @@ textarea {
 }
 
 .menu-item:hover {
-    background: var(--color-border);
+    background: rgba(44, 83, 100, 0.15);
     transform: translateX(4px);
 }
 
